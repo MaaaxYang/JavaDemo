@@ -1,9 +1,13 @@
 import classDir.*;
+
 import designMode.Adapter.AdapterTest;
 import designMode.bridge.BridgeTest;
 import designMode.decorator.DecoratorTest;
 import designMode.facade.FacadeTest;
 import designMode.proxy.ProxyTest;
+import javaUtils.*;
+import nio.FileNio;
+import sun.misc.Unsafe;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -12,7 +16,7 @@ import java.math.BigDecimal;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
         /**适配器模式**/
         //类的适配器模式 当希望将一个类转换成满足另一个新接口的类时，可以使用类的适配器模式，创建一个新类，继承原有的类，实现新的接口即可。
         AdapterTest.run1();
@@ -42,9 +46,63 @@ public class Main {
          *
          * **/
 
+        CountDownLatchDemo downLatchDemo = new CountDownLatchDemo();
+        //downLatchDemo.run();
 
-        BigDecimal amount = (new BigDecimal(20000).subtract(new BigDecimal(120)));
-        System.out.println(amount);
+        System.out.println("-----------------");
+
+        CallableDemo callableDemo = new CallableDemo();
+        //callableDemo.run();
+
+        System.out.println("-----------------");
+
+        ReentrantLockDemo reentrantLockDemo = new ReentrantLockDemo();
+        //reentrantLockDemo.run();
+
+        System.out.println("-----------------");
+
+        ConditionDemo conditionDemo = new ConditionDemo();
+        //conditionDemo.run();
+
+        ThreadJiaoTiDemo threadJiaoTiDemo = new ThreadJiaoTiDemo();
+        //threadJiaoTiDemo.run();
+        //threadJiaoTiDemo.run2();
+
+        ReadWriteLockDemo readWriteLockDemo = new ReadWriteLockDemo();
+        //readWriteLockDemo.run();
+
+        ThreadPoolDemo threadPoolDemo = new ThreadPoolDemo();
+        //threadPoolDemo.run();
+
+        ScheduledThreadPoolDemo scheduledThreadPoolDemo = new ScheduledThreadPoolDemo();
+        //scheduledThreadPoolDemo.run();
+
+        ConcurrentHashMapDemo concurrentHashMapDemo = new ConcurrentHashMapDemo();
+        //concurrentHashMapDemo.run();
+
+
+        /**
+         * 移位运算
+         */
+//        int num = 2;
+//        int n1 = num>>>1;
+//        int or = num|n1;
+//        System.out.println(or);
+
+        long a = -1;
+        long b = -1<<1;
+        long c = a ^ b;
+        System.out.println("a：" + a);
+        System.out.println("b：" + b);
+        System.out.println("c：" + c);
+
+        System.out.println("a：" + Long.toBinaryString(a));
+        System.out.println("b：" + Long.toBinaryString(b));
+        System.out.println("c：" + Long.toBinaryString(c));
+        //FileNio.test1();
+
+//        BigDecimal amount = (new BigDecimal(20000).subtract(new BigDecimal(120)));
+//        System.out.println(amount);
         //System.out.println("Hello World!");
 
 //        cls_a a = new cls_a();
