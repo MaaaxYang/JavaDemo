@@ -1,3 +1,12 @@
+/*
+ * Copyright (c) 2018. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+ * Morbi non lorem porttitor neque feugiat blandit. Ut vitae ipsum eget quam lacinia accumsan.
+ * Etiam sed turpis ac ipsum condimentum fringilla. Maecenas magna.
+ * Proin dapibus sapien vel ante. Aliquam erat volutpat. Pellentesque sagittis ligula eget metus.
+ * Vestibulum commodo. Ut rhoncus gravida arcu.
+ */
+
+import algorithms.DFS;
 import classDir.*;
 import designMode.Adapter.AdapterTest;
 import designMode.bridge.BridgeTest;
@@ -5,12 +14,27 @@ import designMode.decorator.DecoratorTest;
 import designMode.facade.FacadeTest;
 import designMode.proxy.ProxyTest;
 
+import java.io.FileInputStream;
+import java.io.RandomAccessFile;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
+import java.nio.Buffer;
+import java.nio.ByteBuffer;
+import java.nio.channels.Channel;
+import java.nio.channels.FileChannel;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class Main {
+
+
+
+    private static final long serialVersionUID = 1L;
 
     public static void main(String[] args) {
         /**适配器模式**/
@@ -43,8 +67,58 @@ public class Main {
          * **/
 
 
-        BigDecimal amount = (new BigDecimal(20000).subtract(new BigDecimal(120)));
-        System.out.println(amount);
+//        DFS dfs = new DFS();
+//        dfs.depthFirstSearch();
+//
+//        try{
+//            FileChannel channel = new FileInputStream("").getChannel();
+//            ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
+//
+//            int bytesRead = channel.read(byteBuffer);
+//
+//            while (bytesRead!=-1){
+//                byteBuffer.flip();
+//                while(byteBuffer.hasRemaining()){
+//                    System.out.println((char)byteBuffer.get());
+//                }
+//                byteBuffer.compact();
+//                bytesRead = channel.read(byteBuffer);
+//            }
+//            channel.close();
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }finally {
+//
+//        }
+
+
+//        String str = "";
+//        StringBuilder strBuilder = new StringBuilder("123");
+//        StringBuffer strBuffer = new StringBuffer("123");
+//
+//        ArrayList<Integer> arrayList = new ArrayList<>();
+//        for(int i = 0;i<11;i++){
+//            arrayList.add(i);
+//        }
+//
+//        HashMap<Integer,String> map = new HashMap<>();
+//        for(int i = 0;i<17;i++){
+//            if (i==11){
+//                map.put(i,"bbb-" + i);
+//            }
+//            map.put(i,"aaa-" + i);
+//        }
+//        map.get(12);
+//
+//        Integer it = 1;
+//        String str2 = it.toString();
+//
+//        System.out.println(str2);
+
+
+
+//        BigDecimal amount = (new BigDecimal(20000).subtract(new BigDecimal(120)));
+//        System.out.println(amount);
         //System.out.println("Hello World!");
 
 //        cls_a a = new cls_a();
@@ -104,5 +178,108 @@ public class Main {
 //            ex.printStackTrace();
 //        }
 
+        /**
+         * 链表反转
+         */
+//        Main m = new Main();
+//        m.test();
+//        try{
+//
+//            ByteBuffer byteBuffer = ByteBuffer.allocate(100);
+//            FileChannel fileChannel = (new FileInputStream("")).getChannel();
+//            fileChannel.read(byteBuffer);
+//
+//        }catch (Exception ex){
+//            ex.printStackTrace();
+//        }
+
+
+
     }
+
+    public void test()
+    {
+
+        Node node = new Node(1);
+        Node first = node;
+        for(int i = 2;i<4;i++){
+            node.setNext(new Node(i));
+            node = node.next;
+        }
+
+        reverse2(first);
+        while (node!=null){
+            System.out.print(node.getValue()+" -> ");
+            node = node.next;
+        }
+    }
+
+    class Node{
+        Integer value;
+        Node next;
+
+        public Node(Integer value) {
+            this.value = value;
+        }
+
+        public Integer getValue() {
+            return value;
+        }
+
+        public void setValue(Integer value) {
+            this.value = value;
+        }
+
+        public Node getNext() {
+            return next;
+        }
+
+        public void setNext(Node next) {
+            this.next = next;
+        }
+    }
+
+    /**
+     * 行为描述：
+     *
+     * @param current
+     * @return
+     */
+    public Node reverse(Node current){
+        // 上一个节点
+        Node previous = null;
+        // 下一个节点
+        Node next = null;
+
+        while (current!=null){
+            // 缓存下一个节点
+            next = current.next;
+            // 将上一个节点覆盖到下一个节点
+            current.next = previous;
+            // 将当前节点缓存到 上一个节点，用于给下个节点使用
+            previous = current;
+            // 切换到下一个节点
+            current = next;
+        }
+
+        return current;
+    }
+
+    /**
+     * 递归
+     * @param current
+     * @return
+     */
+    public Node reverse2(Node current){
+        if (current==null||current.next==null){
+            return current;
+        }
+        // 用递归找到链表尾部
+        reverse2(current.next);
+        current.next.next = current;
+        current.next = null;
+
+        return current;
+    }
+
 }
