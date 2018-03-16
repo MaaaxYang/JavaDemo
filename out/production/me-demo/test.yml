@@ -1,0 +1,97 @@
+# spring 基础配置
+spring:
+  application:
+    name: top-activity
+  datasource:
+    name: default
+    type: org.apache.tomcat.jdbc.pool.DataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://mysql.beta.upanb.cn:4310/tops_activity_operation?useSSL=false&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
+    username: activity_beta
+    password: N3Nz1oMgqik8AQmsMxKPgmtDMy7UbG
+    initialize: false
+    tomcat:
+      validationQuery: 'select 2'
+      testOnBorrow: true
+      testOnReturn: true
+      testWhileIdle: true
+      maxWait: 15000
+      init-s-q-l: 'set names utf8mb4;'
+      maxActive: 100
+      maxIdle: 20
+      minIdle: 20
+      initialSize: 50
+  redis:
+    host: redis.901.upanb.cn
+    port: 7380
+    password: VKbyBfgZ4Y4gx3mEfqCLnSeJSppCLu
+    timeout: 5000
+    database: 17
+    pool:
+      max-active: 100
+      max-idle: 30
+
+#cxf 配置
+cxf:
+  path: /activity/api/v1
+  jaxrs:
+    component-scan: true
+    classes-scan-packages:
+      com.tops001.operation.activity.web.filter,
+      com.fasterxml.jackson.jaxrs.json,
+      com.tops001.operation.activity.web.api
+
+# swagger 配置
+swagger:
+  enabled: true
+  resource-package: com.tops001.operation.activity
+  base-path: /activity/api/v1
+  title: top-activity Swagger
+  description: top-activity Swagger Description  @see  SwaggerProperties
+
+#shiro 配置
+shiro:
+  enabled: true
+  web:
+    enabled: true
+
+# server 端口配置
+server:
+  port: 8291
+  connectionTimeout: 15000
+  tomcat:
+    maxThreads: 600
+    minSpareThreads: 100
+    maxConnections: 15000
+
+# mybatis 配置
+mybatis.config-location: classpath:mybatis-config.xml
+
+# dubbo 配置
+dubbo.port: 9291
+dubbo.registry.address: zookeeper://192.168.255.76:2182?backup=192.168.255.77:2182,192.168.255.78:2182
+
+# feign 配置
+feign:
+  enabled: true
+  clients:
+    oauth:
+      base-url: http://user.beta.apitops.com
+      request-headers:
+        K-AppCode: java
+        K-AppKey: f587d21b75714539a0273d09ddbb3a3f
+        K-SignVer: 2
+        appcode: bops
+
+# 消息队列配置
+xqueue:
+  enabled: true
+  topics:
+    activity_job:
+      topic-type: ONS
+      topic-name: activity_job_beta
+      topic-properties:
+        AccessKey: LTAItRVZ06DkJExD
+        SecretKey: vbgjqJT1GOum5h1PrM1f3PkWzVVYXJ
+        ConsumerId: CID_activity_job_beta
+        ProducerId: PID_activity_job_beta

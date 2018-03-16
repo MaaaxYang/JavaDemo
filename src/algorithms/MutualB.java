@@ -6,16 +6,11 @@
  * Vestibulum commodo. Ut rhoncus gravida arcu.
  */
 
-package classDir;
-
-import java.io.Serializable;
+package algorithms;
 
 /**
- * Created by Administrator on 2018/1/11.
+ * Created by Administrator on 2018/3/5.
  */
-public class SerialVerisonUIDTest implements Serializable {
-
-    private static final long serialVersionUID = 2035496003094497182L;
-
-
+public class MutualB {
+    public MutualA mutualA = new MutualA();
 }

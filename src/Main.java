@@ -6,6 +6,7 @@
  * Vestibulum commodo. Ut rhoncus gravida arcu.
  */
 
+import algorithms.ConcurrentHashMapDemo;
 import algorithms.DFS;
 import classDir.*;
 import designMode.Adapter.AdapterTest;
@@ -17,6 +18,8 @@ import designMode.proxy.ProxyTest;
 import java.io.FileInputStream;
 import java.io.RandomAccessFile;
 import java.lang.annotation.Annotation;
+import java.lang.ref.Reference;
+import java.lang.ref.WeakReference;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
@@ -24,11 +27,10 @@ import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.nio.channels.Channel;
 import java.nio.channels.FileChannel;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedList;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.stream.Collectors;
 
 public class Main {
 
@@ -192,9 +194,88 @@ public class Main {
 //        }catch (Exception ex){
 //            ex.printStackTrace();
 //        }
+//        ThreadLocal threadLocal = new ThreadLocal();
+//
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("yyMMdd");
+//        String str = dateFormat.format(new Date());
+//        System.out.println(str);
 
 
+        //ConcurrentHashMapDemo concurrentHashMapDemo = new ConcurrentHashMapDemo();
+        //concurrentHashMapDemo.run();
+//
+        System.out.println("插入数据...");
+        List<Integer> list = new LinkedList<>();
+        Set<Integer> set = new LinkedHashSet<>();
+        Date time11 = new Date();
+        for(int i = 0;i<1000000;i++){
+            list.add(new Integer(i));
+        }
+        Date time22 = new Date();
+        System.out.println("list 插入耗时：" + (time22.getTime()-time11.getTime()));
 
+        for (int i = 0;i<5;i++){
+            System.out.println("=============== "+i+"==============");
+
+//        for(int i = 0;i<10000000;i++){
+//            set.add(new Integer(i));
+//        }
+            Date time33 = new Date();
+            for (Integer it : list){
+
+            }
+            Date time44 = new Date();
+//        for (Integer it : set){
+//
+//        }
+            Date time55 = new Date();
+
+//        System.out.println("set 插入耗时：" + (time33.getTime()-time22.getTime()));
+
+//        System.out.println("list 遍历耗时：" + (time44.getTime()-time33.getTime()));
+//        System.out.println("set 遍历耗时：" + (time55.getTime()-time44.getTime()));
+
+            Set<Integer> set2 = new LinkedHashSet<>();
+            List<Integer> list2 = new LinkedList<>();
+
+            Date t1 = new Date();
+            set2.addAll(list);
+            Date t2 = new Date();
+//        list2.addAll(set);
+            Date t3 = new Date();
+            System.out.println("set addAll 耗时："+(t2.getTime()-t1.getTime()));
+//        System.out.println("list addAll 耗时："+(t3.getTime()-t2.getTime()));
+
+//            System.out.println("转换耗时计算。。");
+            Date time1 = new Date();
+            Set<Integer> st = list.stream().collect(Collectors.toSet());
+            Date time2 = new Date();
+//        List<Integer> ls = set.stream().collect(Collectors.toList());
+            Date time3 = new Date();
+            System.out.println("list->set 耗时：" + (time2.getTime()-time1.getTime()));
+//        System.out.println("set->list 耗时：" + (time3.getTime()-time2.getTime()));
+
+        }
+
+
+//        Date date = convertToDay(new Date());
+//        System.out.println(date);
+//
+        Reference temp = new WeakReference(null);
+
+    }
+
+    public static final Date convertToDay(Date datetime){
+        if (datetime==null){
+            return null;
+        }
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(datetime);
+        int date = calendar.get(Calendar.DATE);
+        int month = calendar.get(Calendar.MONTH);
+        int year = calendar.get(Calendar.YEAR);
+        calendar.set(year,month,date,0,0,0);
+        return calendar.getTime();
     }
 
     public void test()
