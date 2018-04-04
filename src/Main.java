@@ -29,6 +29,7 @@ import java.nio.channels.Channel;
 import java.nio.channels.FileChannel;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
@@ -263,6 +264,9 @@ public class Main {
 //
         Reference temp = new WeakReference(null);
 
+        //Executors.newFixedThreadPool(10);
+        //Thread.currentThread().setContextClassLoader();
+        //temp.getClass().getClassLoader().loadClass()
     }
 
     public static final Date convertToDay(Date datetime){
