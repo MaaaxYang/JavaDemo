@@ -19,9 +19,9 @@ public class BinarySearch {
 
             int mid = lowIndex + (highIndex-lowIndex)>>1;
 
-            if (mid<arr[mid]){
+            if (key<arr[mid]){
                 highIndex = mid-1;
-            }else if(mid>arr[mid]){
+            }else if(key>arr[mid]){
                 lowIndex = mid +1;
             }else {
                 return mid;

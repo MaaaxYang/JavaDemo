@@ -9,12 +9,11 @@
 package nio;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.nio.ByteBuffer;
 import java.nio.channels.SeekableByteChannel;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.nio.file.*;
 
 public class TMDNio {
 
@@ -26,11 +25,20 @@ public class TMDNio {
                 //
                 System.out.println(line);
 
-                
+
             }
         }
 
+
+        try(BufferedWriter bw = Files.newBufferedWriter(path, StandardCharsets.UTF_8, StandardOpenOption.APPEND)){
+            bw.write("");
+            
+        }
+
+
     }
+
+
 
     public static void func2() throws Exception{
         Path path = Paths.get("test.txt");

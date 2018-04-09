@@ -71,8 +71,11 @@ public class RunKlass {
 
         ReentrantLock reentrantLock = new ReentrantLock();
         reentrantLock.lock();
+        reentrantLock.unlock();
 
         CyclicBarrier cyclicBarrier = new CyclicBarrier(10);
+        cyclicBarrier.getNumberWaiting();
+        cyclicBarrier.isBroken();
         cyclicBarrier.await();
         cyclicBarrier.reset();
 

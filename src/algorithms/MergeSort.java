@@ -27,7 +27,8 @@ public class MergeSort {
         int[] temp = new int[high-low+1];
         int tempIndex=0;
 
-        int i= low;
+        // 获取两段数组的初始坐标
+        int i = low;
         int j = mid+1;
 
         while(i<=mid && j<=high){
@@ -48,6 +49,44 @@ public class MergeSort {
 
         for(int offset=0;offset<temp.length;offset++){
             arr[low+offset] = temp[offset];
+        }
+    }
+
+
+    public static void merge2(int arr[],int low,int mid,int high){
+        int[] temp = new int[high-low+1];
+        int tempIndex = 0;
+
+        int leftArrStart = low;
+        int rightArrStart = mid+1;
+
+        while (leftArrStart<=mid && rightArrStart<=high){
+            if (arr[leftArrStart]>arr[rightArrStart]){
+                temp[tempIndex++] = arr[rightArrStart++];
+            }else{
+                temp[tempIndex++] = arr[leftArrStart++];
+            }
+        }
+
+        while (leftArrStart<=mid){
+            temp[tempIndex++] = arr[leftArrStart++];
+        }
+
+        while (rightArrStart<=high){
+            temp[tempIndex++] = arr[rightArrStart++];
+        }
+
+        for (int offset = low;offset<temp.length;offset++){
+            arr[low+offset] = temp[offset];
+        }
+
+    }
+
+    public static void main(String[] args){
+
+        int[] res = sort(new int[]{4,3,2,1},0,3);
+        for(int i = 0;i<res.length;i++){
+            System.out.print(res[i]+" ");
         }
     }
 }

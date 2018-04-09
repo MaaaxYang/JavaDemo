@@ -39,4 +39,24 @@ public class QuickSort {
         return high;
     }
 
+    public static int fork(int[] arr,int low,int high){
+        int mid = arr[low];
+
+        while (low<high){
+            while (arr[high]>mid && high > low){
+                high--;
+            }
+            arr[low] = arr[high];
+
+            while (arr[low]<mid && high > low){
+                low++;
+            }
+            arr[high] = arr[low];
+        }
+        arr[high] = mid;
+
+
+        return high;
+    }
+
 }

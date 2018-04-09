@@ -91,6 +91,7 @@ public class ChainList<E> {
         hashMap.put(null,null);
         hashMap.get(null);
         hashMap.size();
+        hashMap.hashCode();
 
         ConcurrentHashMap concurrentHashMap = new ConcurrentHashMap();
         concurrentHashMap.put(null,null);
@@ -143,6 +144,9 @@ public class ChainList<E> {
         };
         threadLocal.set(null);
         threadLocal.get();
+
+        Thread thread = new Thread();
+
 
         Integer x = 5;
         int y = 5;
