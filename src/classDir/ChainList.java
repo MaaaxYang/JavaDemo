@@ -83,6 +83,15 @@ public class ChainList<E> {
     }
 
     public static void main(String[] args){
+
+        LRUMap<Integer,Integer> lruMap = new LRUMap<>(3,0.75f);
+        lruMap.put(1,1);
+        lruMap.put(2,2);
+        lruMap.put(3,3);
+        lruMap.get(1);
+        lruMap.put(4,4);
+        System.out.println(Arrays.toString(lruMap.keySet().toArray()));
+
         LinkedList linkedList = new LinkedList();
         linkedList.addLast(1);
         linkedList.get(0);
@@ -107,6 +116,11 @@ public class ChainList<E> {
 
         treeMap.tailMap("");
 
+        HashSet hashSet = new HashSet();
+        hashSet.add(0);
+
+        LinkedHashSet linkedHashSet = new LinkedHashSet();
+        linkedHashSet.add(0);
 
 
         LinkedHashMap linkedHashMap = new LinkedHashMap(){
@@ -155,6 +169,7 @@ public class ChainList<E> {
         synchronized (ChainList.class){
 
         }
+
 
     }
 }

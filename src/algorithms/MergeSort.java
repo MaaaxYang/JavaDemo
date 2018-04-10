@@ -22,6 +22,7 @@ public class MergeSort {
         return arr;
     }
 
+
     public static void merge(int[] arr,int low,int mid,int high){
 
         int[] temp = new int[high-low+1];
@@ -52,34 +53,42 @@ public class MergeSort {
         }
     }
 
+    public static int[] sort2(int[] arr,int low ,int high){
 
-    public static void merge2(int arr[],int low,int mid,int high){
-        int[] temp = new int[high-low+1];
+        int mid = (low+high)>>1;
+        if (low<high){
+            sort2(arr,low,mid);
+            sort2(arr,mid+1,high);
+            merge2(arr,low,mid,high);
+        }
+        return arr;
+    }
+
+
+    public static void merge2(int arr[],int lowIndex,int midIndex,int highIndex){
+        int[] temp = new int[highIndex-lowIndex+1];
         int tempIndex = 0;
-
-        int leftArrStart = low;
-        int rightArrStart = mid+1;
-
-        while (leftArrStart<=mid && rightArrStart<=high){
-            if (arr[leftArrStart]>arr[rightArrStart]){
-                temp[tempIndex++] = arr[rightArrStart++];
+        int firstIndex = lowIndex;
+        int secondIndex = midIndex+1;
+        while (firstIndex<midIndex && secondIndex<highIndex){
+            if (arr[firstIndex]<arr[secondIndex]){
+                temp[tempIndex++] = arr[firstIndex++];
             }else{
-                temp[tempIndex++] = arr[leftArrStart++];
+                temp[tempIndex++] = arr[secondIndex++];
             }
         }
 
-        while (leftArrStart<=mid){
-            temp[tempIndex++] = arr[leftArrStart++];
+        while (firstIndex<midIndex){
+            temp[tempIndex++] = arr[firstIndex++];
         }
 
-        while (rightArrStart<=high){
-            temp[tempIndex++] = arr[rightArrStart++];
+        while (secondIndex>midIndex){
+            temp[tempIndex++] = arr[secondIndex++];
         }
 
-        for (int offset = low;offset<temp.length;offset++){
-            arr[low+offset] = temp[offset];
+        for(int offset = 0;offset<temp.length;offset++){
+            arr[lowIndex+offset] = temp[offset];
         }
-
     }
 
     public static void main(String[] args){

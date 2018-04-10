@@ -33,16 +33,15 @@ public class InsertSort {
 
     public static int[] sort2(int[] arr){
         int preIndex = 0;
-        int current = 0;
-
-        for (int i = 0;i<arr.length;i++){
-            preIndex = i-1;
-            current = arr[i];
-            while (preIndex>=0 && arr[preIndex]>current){
+        int currentValue = 0;
+        for (int i = 1;i<arr.length;i++){
+            preIndex = i -1;
+            currentValue = arr[i];
+            while (arr[preIndex]>currentValue && preIndex >= 0){
                 arr[preIndex+1] = arr[preIndex];
                 preIndex--;
             }
-            arr[preIndex+1] = current;
+            arr[preIndex+1] = currentValue;
         }
 
         return arr;

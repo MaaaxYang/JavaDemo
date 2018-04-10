@@ -8,6 +8,17 @@
 
 package servlet;
 
-public class Demo {
+import java.util.concurrent.locks.LockSupport;
 
+public class Demo {
+    public static void main(String[] args){
+        int i = 0;
+        while (true){
+
+            System.out.println(i++);
+            LockSupport.parkNanos(1000*1000*1000);
+
+            "aaa".contains("a");
+        }
+    }
 }

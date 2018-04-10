@@ -30,4 +30,16 @@ public class Sqrt {
 
 // 2的平方根的求解结果
 // >>1.414213562373095
+
+    public static double sqrt2(double n){
+        if (n<0){
+            return Double.NaN;
+        }
+        double err = 1e-15;
+        double t = n ;
+        while (Math.abs(t-n/t)>err*t){
+            t = (n/t+t)/2;
+        }
+        return t;
+    }
 }

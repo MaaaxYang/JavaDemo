@@ -65,4 +65,35 @@ public class HeapSort {
         arr[a] = arr[b];
         arr[b] = temp;
     }
+
+
+    //---------------------------------
+    public static void adjustHeap2(int arr[],int index,int length){
+        int temp = arr[index];
+        for(int k=index*2+1;k<length;k=k*2+1){
+            if (arr[k]<arr[k+1] && k+1 < length){
+                k++;
+            }
+            if (arr[k]>temp){
+                arr[index] = arr[k];
+                index = k;
+            }else{
+                break;
+            }
+        }
+        arr[index] = temp;
+    }
+
+    public static void sort2(int arr[]){
+        // 构造大顶堆
+        for(int i = arr.length/2-1;i>=0;i--){
+            adjustHeap2(arr,i,arr.length);
+        }
+
+        // 交换并重新调整
+        for(int i = arr.length-1;i>0;i--){
+            swap(arr,0,i);
+            adjustHeap2(arr,0,i);
+        }
+    }
 }

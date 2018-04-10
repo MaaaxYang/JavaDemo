@@ -17,6 +17,7 @@ import java.util.BitSet;
 import java.util.HashMap;
 import java.util.TreeMap;
 import java.util.TreeSet;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.locks.Lock;
@@ -83,6 +84,7 @@ public class RunKlass {
         stampedLock.readLock();
         stampedLock.writeLock();
 
+        CountDownLatch countDownLatch = new CountDownLatch(10);
 
         ReentrantReadWriteLock reentrantReadWriteLock = new ReentrantReadWriteLock();
         Lock writeLock = reentrantReadWriteLock.writeLock();
