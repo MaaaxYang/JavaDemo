@@ -14,6 +14,7 @@ public class ConcurrentHashMapDemo {
         concurrentHashMap.put("test",123);
         concurrentHashMap.put("test",666565);
         concurrentHashMap.put("XXX",9999);
+        concurrentHashMap.get("test");
         Integer value = concurrentHashMap.get("test");
         System.out.println("value："+ value);
 
